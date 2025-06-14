@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  
+
+  <title>Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #add8e6; /* light blue */
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+        .page-title {
+      margin-top: 30px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #003366;
+      text-align: center;
+    }
+
+    .login-container {
+      display: flex;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 600px;
+      max-width: 95%;
+    }
+
+    .logo-box {
+      background-color: #ffffff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+    }
+
+    .logo-box img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .login-box {
+      padding: 30px;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .login-box button:hover {
+      background-color: #2980b9;
+    }
+
+    .extra-links {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .extra-links a {
+      color: #3498db;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    <h1>COMPUTER LAB EQUIPMENT INVENTORY SYSTEM</h1>
+  </div>
+
+  <div class="login-container">
+    <div class="logo-box">
+      <img src="{% static 'images/school_logo.png' %}" alt="School Logo">
+    </div>
+
+    <div class="login-box">
+      <h2>Login</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+      </form>
+
+      <div class="extra-links">
+        <p><a href="{% url 'register_user' %}">Register</a></p>
+        <p><a href="/admin/" target="_blank">Admin Panel</a></p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+

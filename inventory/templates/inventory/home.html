@@ -1,0 +1,45 @@
+<h2>Equipment Inventory</h2>
+<a href="{% url 'add_equipment' %}">Add Equipment</a> |
+
+<form method="post" action="{% url 'logout' %}" style="display:inline;">
+  {% csrf_token %}
+  <button type="submit" style="background:none; border:none; padding:0; margin:0; color:blue; text-decoration:underline; cursor:pointer;">
+    Logout
+  </button>
+</form>
+
+<form method="GET" action="." style="margin-top: 15px;">
+  <input type="text" name="q" placeholder="Search by name or condition..." value="{{ request.GET.q }}">
+  <button type="submit">Search</button>
+</form>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+  <thead>
+    <tr style="background-color: #f2f2f2;">
+      <th>Equipment</th>
+      <th>Specification</th>
+      <th>Quantity</th>
+      <th>Condition</th>
+      <th>Remarks</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in equipment %}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.specification }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.condition }}</td>
+      <td>{{ item.remarks }}</td>
+      <td>
+        <a href="{% url 'edit_equipment' item.id %}">Edit</a> |
+        <a href="{% url 'delete_equipment' item.id %}" onclick="return confirm('Are you sure?');">Delete</a>
+        <a href="{% url 'export_pdf' %}" class="btn btn-primary">Export as PDF</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6" style="text-align:center;">No equipment found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
